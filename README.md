@@ -1,13 +1,13 @@
 # av-cli
 
-A Node.js CLI tool for querying the [Alpha Vantage](https://www.alphavantage.co/) stock market API. Outputs clean **Markdown** tables or **JSON**.
+A Python CLI tool for querying the [Alpha Vantage](https://www.alphavantage.co/) stock market API. Outputs clean **Markdown** tables or **JSON**.
 
 ## Setup
 
 ### 1. Install dependencies
 
 ```bash
-npm install
+pip install click
 ```
 
 ### 2. Set your API key
@@ -20,13 +20,13 @@ export ALPHA_VANTAGE_KEY=your_key_here
 
 Add it to your `~/.bashrc` or `~/.zshrc` to persist it.
 
-### 3. (Optional) Install globally
+### 3. (Optional) Install globally as `av`
 
 ```bash
-npm link
+pip install -e .
 ```
 
-After linking, use `av` from anywhere. Otherwise use `node index.js`.
+After installing, use `av` from anywhere. Otherwise use `python av.py`.
 
 ---
 
@@ -37,7 +37,7 @@ After linking, use `av` from anywhere. Otherwise use `node index.js`.
 ```bash
 av quote AAPL
 av quote MSFT --format json
-node index.js quote TSLA -f markdown
+python av.py quote TSLA -f markdown
 ```
 
 **Markdown output:**
@@ -125,3 +125,4 @@ av overview AMZN --format json
 - The free Alpha Vantage tier allows **25 requests/day** and **5 requests/minute**.
 - Tickers are case-insensitive (`aapl` and `AAPL` both work).
 - `daily` returns full daily history; use `--days` to limit output rows.
+- The only dependency is `click`; HTTP requests use Python's built-in `urllib`.
